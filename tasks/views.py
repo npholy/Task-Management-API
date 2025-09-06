@@ -1,12 +1,16 @@
 from rest_framework import generics
-from .models import Task
+from .models import Task, Category
 from django_filters.rest_framework import DjangoFilterBackend
 from .permissions import IsOwner
-from .serializers import TaskSerializer
+from .serializers import TaskSerializer, CategorySerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import filters
 from rest_framework.filters import SearchFilter
 from .pagination import TaskPagination
+from rest_framework import viewsets
+from rest_framework import permissions
+from rest_framework.permissions import AllowAny
+
 
 class TaskListCreateView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
@@ -19,6 +23,7 @@ class TaskListCreateView(generics.ListCreateAPIView):
     # Save the owner when creating a new task
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
 
 class TaskListView(generics.ListCreateAPIView):
     queryset = Task.objects.all()
@@ -37,3 +42,13 @@ class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated, IsOwner]
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [AllowAny]
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]

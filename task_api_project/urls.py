@@ -16,17 +16,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.views.generic import TemplateView
+
+@api_view(['GET'])
+def welcome(request):
+    return Response({
+        "message": "Welcome to the Task Management API",
+        "endpoints": {
+            "login": "/api/token/",
+            "refresh_token": "/api/token/refresh/",
+            "tasks": "/api/tasks/",
+            "users": "/api/users/",
+            "categories": "/api/categories/"
+        }
+    })
 
 urlpatterns = [
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('admin/', admin.site.urls),
-    path('api/users/', include('users.urls')),
-    path('api/tasks/', include('tasks.urls')),
-
-    # JWT endpoints
+    path('api/', include('tasks.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
