@@ -1,4 +1,6 @@
 Task Manager
+
+
 A full-stack web application designed to help users efficiently manage their tasks, deadlines, and priorities. This application provides a simple and intuitive interface to create, track, and organize tasks and categories.
 
 ✨ Features
@@ -59,4 +61,5 @@ View & Interact: All your tasks will be displayed on the dashboard. You can togg
 Contributions are welcome! If you find a bug or have an idea for a new feature, please open an issue or submit a pull request.
 
 ✒️ Author
+
 Folikia Nigussie
