@@ -40,8 +40,9 @@ A web browser.
 Installation
 Clone the repository:
 
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-cd your-repo-name
+git clone [https://github.com/npholy/Task-Management-API.git
+](https://github.com/npholy/Task-Management-API.git)
+cd Task-Management-API
 
 Open the index.html file in your browser:
 Simply double-click the index.html file or use a live server extension in your code editor to run the application.
@@ -63,3 +64,4 @@ Contributions are welcome! If you find a bug or have an idea for a new feature, 
 ✒️ Author
 
 Folikia Nigussie
+
